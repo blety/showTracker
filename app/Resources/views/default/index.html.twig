@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="wrapper">
+        <div id="container">
+            <div id="welcome">
+                <h1><span>Welcome to</span> ShowTracker</h1>
+            </div>
+
+            {{ form_start(userForm) }}
+                {{ form_row(userForm.firstName) }}
+                {{ form_row(userForm.lastName) }}
+                {{ form_row(userForm.birthDate) }}
+                <input type="submit" value="Save user" />
+            {{ form_end(userForm) }}
+
+            <table>
+                <thead>
+                    <th>Id</th>
+                    <th>Last name</th>
+                    <th>First name</th>
+                    <th>Birthdate</th>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.lastName }}</td>
+                        <td>{{ user.firstName }}</td>
+                        <td>{{ user.birthDate |date("d/m/Y") }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            {{ form_start(bandForm) }}
+                {{ form_row(bandForm.name) }}
+                <input type="submit" value="Save band"/>
+           {{ form_end(bandForm) }}
+
+            <table>
+                <thead>
+                    <th>Name</th>
+                </thead>
+                <tbody>
+                {% for band in bands %}
+                    <tr>
+                        <td>{{ band.name }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
